@@ -1,3 +1,6 @@
+import os
+
+
 # https://www.youtube.com/watch?v=f3D-w6XMTN8
 def mainMenu():
     print("1. Opcija 1")
@@ -24,9 +27,18 @@ def mainMenu():
 
 
 def opcija1():
-    print("Ovo je opcija 1")
-    a = input("\nPritisnite enter za povratak u glavni meni")
-    mainMenu()
+
+    putanja = str(input("Unesite apsolutnu putanju direktorijuma: "))
+
+    if not os.path.exists(putanja):
+        print("Putanja ne postoji! Molimo unesite novu...")
+        opcija1()
+    else:
+        for dirpath, dirnames, filenames in os.walk(putanja):
+            for f in filenames:
+                if f.endswith('.html') or f.endswith('.htm'):
+                    # print("\nFiles:", f)
+                    print(os.path.join(dirpath, f))
 
 
 def opcija2():
