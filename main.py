@@ -7,6 +7,7 @@ parser = Parser()
 
 def opcija1():
 
+    global putanja
     putanja = str(input("Unesite apsolutnu putanju direktorijuma: "))
 
     if not os.path.exists(putanja):
@@ -17,12 +18,18 @@ def opcija1():
             for f in filenames:
                 if f.endswith('.html') or f.endswith('.htm'):
                     # print("\nFiles:", f)
-                    print("\n" + os.path.join(dirpath, f))
-                    parser.parse(os.path.join(dirpath, f))
+                    # print("\n" + os.path.join(dirpath, f))
+                    # print(parser.parse(os.path.join(dirpath, f)))
+                    links, words = parser.parse(os.path.join(dirpath, f))
+                    print()
+                    print(links)
+                    print(words)
+        mainMenu()
 
 
 def opcija2():
     print("Ovo je opcija 2")
+    print(putanja)
     a = input("\nPritisnite enter za povratak u glavni meni")
     mainMenu()
 
