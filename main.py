@@ -1,9 +1,12 @@
 import os
-from parser import *
+from parser2 import Parser
+
+global parser
+parser = Parser()
 
 
 def opcija1():
-    parser = Parser()
+
     putanja = str(input("Unesite apsolutnu putanju direktorijuma: "))
 
     if not os.path.exists(putanja):
@@ -14,7 +17,8 @@ def opcija1():
             for f in filenames:
                 if f.endswith('.html') or f.endswith('.htm'):
                     # print("\nFiles:", f)
-                    print(os.path.join(dirpath, f))
+                    print("\n" + os.path.join(dirpath, f))
+                    parser.parse(os.path.join(dirpath, f))
 
 
 def opcija2():
