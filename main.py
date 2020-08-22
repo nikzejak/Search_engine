@@ -1,12 +1,15 @@
 import os
 from parser2 import Parser
+from trie import TrieNode
 
 global parser
 parser = Parser()
+trie = TrieNode(-1)
 
 
 def opcija1():
 
+    global trie
     global putanja
     putanja = str(input("Unesite apsolutnu putanju direktorijuma: "))
 
@@ -21,16 +24,23 @@ def opcija1():
                     # print("\n" + os.path.join(dirpath, f))
                     # print(parser.parse(os.path.join(dirpath, f)))
                     links, words = parser.parse(os.path.join(dirpath, f))
-                    print()
-                    print(links)
-                    print(words)
+                    # print()
+                    # print(links)
+                    # print(words)
+                    file = os.path.join(dirpath, f)
+                    # print(file)
+                    for word in parser.words:
+                        trie.dodavanje(trie, word.lower(), file)
+
         mainMenu()
 
 
 def opcija2():
-    print("Ovo je opcija 2")
-    print(putanja)
-    a = input("\nPritisnite enter za povratak u glavni meni")
+
+    global reci_za_pretragu;
+    reci_za_pretragu = input("Unesite rec(i) za pretragu...\n-> ")
+    print(reci_za_pretragu)
+
     mainMenu()
 
 
