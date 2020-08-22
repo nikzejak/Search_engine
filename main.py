@@ -39,7 +39,18 @@ def opcija2():
 
     global reci_za_pretragu;
     reci_za_pretragu = input("Unesite rec(i) za pretragu...\n-> ")
-    print(reci_za_pretragu)
+
+    if len(reci_za_pretragu.split()) == 3:
+        if reci_za_pretragu.split()[1] == 'OR' or reci_za_pretragu.split()[1] == 'or':
+            print("OR je tu -> UNIJA")
+        elif reci_za_pretragu.split()[1] == 'AND' or reci_za_pretragu.split()[1] == 'and':
+            print("AND je tu -> PRESEK")
+        elif reci_za_pretragu.split()[1] == 'NOT' or reci_za_pretragu.split()[1] == 'not':
+            print("NOT je tu -> KOMPLEMENT")
+    else:
+        print("Pretraga kada nema operacija ili kada ima vise ili manje od tri reci")
+        print(trie.pretraga(trie, reci_za_pretragu))
+    print(reci_za_pretragu.split())
 
     mainMenu()
 
