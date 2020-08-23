@@ -29,6 +29,7 @@ class TrieNode(object):
         else:
             node.dictionary[link] = 1
 
+    @staticmethod
     def pretraga(root, words: str):
 
         node = root
