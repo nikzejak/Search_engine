@@ -43,7 +43,7 @@ class TrieNode(object):
                     node = child
                     break
             if char_not_found:
-                return False, 0
+                return {}
 
         if not node.word_finished:  # if node.word_finished == False:
             return None

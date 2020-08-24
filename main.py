@@ -42,15 +42,42 @@ def opcija2():
 
     if len(reci_za_pretragu.split()) == 3:
         if reci_za_pretragu.split()[1] == 'OR' or reci_za_pretragu.split()[1] == 'or':
-            print("OR je tu -> UNIJA")
+            print("OR je prisutan")
+            if (trie.pretraga(trie, reci_za_pretragu.split()[0])) or (trie.pretraga(trie, reci_za_pretragu.split()[2])):
+                print("Prva rec -> " + reci_za_pretragu.split()[0].upper())
+                print(trie.pretraga(trie, reci_za_pretragu.split()[0]))
+                print("Druga rec -> " + reci_za_pretragu.split()[2].upper())
+                print(trie.pretraga(trie, reci_za_pretragu.split()[2]))
+
         elif reci_za_pretragu.split()[1] == 'AND' or reci_za_pretragu.split()[1] == 'and':
-            print("AND je tu -> PRESEK")
+            print("AND je prisutan")
+            if (trie.pretraga(trie, reci_za_pretragu.split()[0])) and (trie.pretraga(trie, reci_za_pretragu.split()[2])):
+                print("Prva rec: " + reci_za_pretragu.split()[0].upper())
+                print(trie.pretraga(trie, reci_za_pretragu.split()[0]))
+                print("Druga rec: " + reci_za_pretragu.split()[2].upper())
+                print(trie.pretraga(trie, reci_za_pretragu.split()[2]))
+            else:
+                if (trie.pretraga(trie, reci_za_pretragu.split()[0])) == {}:
+                    print("Prva rec nije pronadjena!\nMolimo unesite nove reci...\n")
+                elif (trie.pretraga(trie, reci_za_pretragu.split()[2])) == {}:
+                    print("Druga rec nije pronadjena!\nMolimo unesite nove reci...\n")
+
         elif reci_za_pretragu.split()[1] == 'NOT' or reci_za_pretragu.split()[1] == 'not':
-            print("NOT je tu -> KOMPLEMENT")
+            print("NOT je prisutan")
+            if (trie.pretraga(trie, reci_za_pretragu.split()[0]) != {}) and (trie.pretraga(trie, reci_za_pretragu.split()[2]) == {}):
+                print("Rec -> " + reci_za_pretragu.split()[0].upper())
+                print(trie.pretraga(trie, reci_za_pretragu.split()[0]))
+            else:
+                print("Druga rec -> " + reci_za_pretragu.split()[2].upper() + " je prisutna u pretrazi.\nDa bi NOT "
+                                                                           "funkcionisao, molimo unesite nove reci..."
+                                                                           "\nNAPOMENA: NOT funkcionise kada je samo"
+                                                                           " prva rec prisutna u pretrazi, a druga ne!")
+                print()
     else:
-        print("Pretraga kada nema operacija ili kada ima vise ili manje od tri reci")
+        print("Pretraga jedne reci:")
         print(trie.pretraga(trie, reci_za_pretragu))
-    print(reci_za_pretragu.split())
+
+    # print(reci_za_pretragu.split())
 
     mainMenu()
 
