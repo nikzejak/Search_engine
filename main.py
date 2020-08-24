@@ -4,7 +4,7 @@ from trie import TrieNode
 
 global parser
 parser = Parser()
-trie = TrieNode(-1)
+trie = TrieNode(2)
 
 
 def opcija1():
